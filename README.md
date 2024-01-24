@@ -7,8 +7,8 @@ Workshop your writing with AI teammates, who can be any of Gemini, OpenAI, or Mi
 ## Installation
 1. Clone the repository
 2. Within the project directory, run
-   - python -m venv virtualenv/
-   - python -m pip install -r requirements.txt
+   - `python -m venv virtualenv/`
+   - `python -m pip install -r requirements.txt`
 
 
 ## Road Map
