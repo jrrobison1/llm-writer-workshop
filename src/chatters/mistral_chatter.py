@@ -28,7 +28,7 @@ class MistralChatter:
         self.initial_prompt = ChatMessage(role="system", content=system_prompt)
         self.message_history.append(self.initial_prompt)
 
-    def chat(self, message, ui_element, window):
+    def chat(self, message):
         if message != "":
             user_message = ChatMessage(role="user", content=message)
             self.message_history.append(user_message)
@@ -44,8 +44,6 @@ class MistralChatter:
                 chunk.choices[0].delta.content is not None
                 and chunk.choices[0].delta.content != ""
             ):
-                ui_element.update(ui_element.get() + chunk.choices[0].delta.content)
-                window.refresh()
                 ai_messsage += chunk.choices[0].delta.content
 
         self.message_history.append(ChatMessage(role="assistant", content=ai_messsage))

@@ -28,7 +28,7 @@ class GeminiChatter:
         self.message_history = []
         self.name = name
 
-    def chat(self, message, ui_element, window):
+    def chat(self, message):
         if message != "":
             user_message = {"role": "user", "parts": [message]}
             self.message_history.append(user_message)
@@ -60,8 +60,6 @@ class GeminiChatter:
                     chunk.candidates[0].content.parts[0].text.replace("•", "  *")
                 )
                 ai_message += response_text
-                ui_element.update(ui_element.get() + response_text)
-                window.refresh()
 
         self.message_history.append({"role": "model", "parts": [ai_message]})
 

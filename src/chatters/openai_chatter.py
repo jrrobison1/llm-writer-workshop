@@ -25,7 +25,7 @@ class OpenAIChatter:
         self.openai_api_key = os.environ.get("OPENAI_API_KEY")
         self.open_ai_client = OpenAI(api_key=self.openai_api_key)
 
-    def chat(self, message, ui_element, window):
+    def chat(self, message):
         user_message = {}
         if message != "":
             user_message = {"role": "user", "content": message}
@@ -43,22 +43,6 @@ class OpenAIChatter:
         ai_messsage = ""
         for openai_chunk in openai_stream:
             if openai_chunk.choices[0].delta.content is not None:
-                if len(ai_messsage) > 0 and ai_messsage[-1] == "\n":
-                    ui_element.update(
-                        ui_element.get()
-                        + "\n\n"
-                        + openai_chunk.choices[0].delta.content
-                    )
-                elif len(ai_messsage) > 0 and ai_messsage[-1] == " ":
-                    ui_element.update(
-                        ui_element.get() + " " + openai_chunk.choices[0].delta.content
-                    )
-                else:
-                    ui_element.update(
-                        ui_element.get() + openai_chunk.choices[0].delta.content
-                    )
-
-                window.refresh()
                 ai_messsage += openai_chunk.choices[0].delta.content
 
         return ai_messsage

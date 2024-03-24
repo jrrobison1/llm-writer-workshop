@@ -1,9 +1,5 @@
-import os
-import time
 from threading import Thread
 
-import PySimpleGUI as sg
-from IPython.display import Markdown, display
 
 from gemini_chatter import GeminiChatter
 from mistral_chatter import MistralChatter
@@ -118,13 +114,13 @@ openai_message_history = []
 gemini_message_history = []
 mistral_message_history = []
 arthur_chatter = OpenAIChatter(
-    model="gpt-4",
+    model="gpt-3.5-turbo",
     system_prompt=arthur_system_prompt,
     name="Arthur",
-    max_output_tokens=1024,
+    max_output_tokens=512,
 )
 luis_chatter = MistralChatter(
-    model="mistral-medium",
+    model="mistral-large-latest",
     system_prompt=luis_system_prompt,
     name="Luis",
     max_output_tokens=512,
@@ -159,118 +155,39 @@ def mistral(message, ui_element):
 
 
 def main():
-    # GUI
-    layout = [
-        [
-            sg.Multiline(
-                "Input",
-                size=(30, 20),
-                font=("Arial", 20),
-                auto_size_text=False,
-                key="question",
-            ),
-            sg.Button("Chat", size=(10, 10), key="chat"),
-        ],
-        [
-            sg.Multiline(
-                "Luis",
-                size=(30, 20),
-                font=("Arial", 20),
-                auto_size_text=False,
-                key="luis",
-            ),
-            sg.Multiline(
-                "Heidi",
-                size=(30, 20),
-                font=("Arial", 20),
-                auto_size_text=False,
-                key="heidi",
-            ),
-            sg.Multiline(
-                "Arthur",
-                size=(30, 20),
-                font=("Arial", 20),
-                auto_size_text=False,
-                key="arthur",
-            ),
-            sg.Multiline(
-                "Yolanda",
-                size=(30, 20),
-                font=("Arial", 20),
-                auto_size_text=False,
-                key="yolanda",
-            ),
-        ],
-    ]
-
-    # Create the Window
-    window = sg.Window("Multi Chat", layout)
-    # Event Loop to process "events" and get the "values" of the inputs
     while True:
-        event, values = window.read()
-        if (
-            event == sg.WIN_CLOSED or event == "Cancel"
-        ):  # if user closes window or clicks cancel
-            break
+        question = (
+            "Here is the original writing for critique, written by Jason: \n***"
+            + question
+            + "\n***\n"
+        )
 
-        if event == "chat":
-            question = window["question"].get()
+        # Give the writing sample to the personas
+        luis_chatter.add_to_history(question)
+        luis_response = (
+            "Here is what Luis thinks about the original writing: \n***\n"
+            + luis_chatter.chat("")
+            + "\n***\n"
+        )
 
-            # Clear inputs
-            window["luis"]("")
-            window["heidi"]("")
-            window["arthur"]("")
-            window["yolanda"]("")
+        heidi_chatter.add_to_history(luis_response)
+        heidi_chatter.add_to_history(question)
+        heidi_response = (
+            "Here is what Heidi thinks about the original writing: \n***\n"
+            + heidi_chatter.chat("")
+            + "\n***\n"
+        )
 
-            question = (
-                "Here is the original writing for critique, written by Jason: \n***"
-                + question
-                + "\n***\n"
-            )
+        arthur_chatter.add_to_history(luis_response)
+        arthur_chatter.add_to_history(heidi_response)
+        arthur_chatter.add_to_history(question)
+        arthur_response = (
+            "Here is what Arthur thinks about the original writing: \n***\n"
+            + arthur_chatter.chat("")
+            + "\n***\n"
+        )
 
-            # Give the writing sample to the personas
-            luis_chatter.add_to_history(question)
-            luis_response = (
-                "Here is what Luis thinks about the original writing: \n***\n"
-                + luis_chatter.chat("", window["luis"], window)
-                + "\n***\n"
-            )
-
-            heidi_chatter.add_to_history(luis_response)
-            heidi_chatter.add_to_history(question)
-            heidi_response = (
-                "Here is what Heidi thinks about the original writing: \n***\n"
-                + heidi_chatter.chat("", window["heidi"], window)
-                + "\n***\n"
-            )
-
-            arthur_chatter.add_to_history(luis_response)
-            arthur_chatter.add_to_history(heidi_response)
-            arthur_chatter.add_to_history(question)
-            arthur_response = (
-                "Here is what Arthur thinks about the original writing: \n***\n"
-                + arthur_chatter.chat("", window["arthur"], window)
-                + "\n***\n"
-            )
-
-            response = yolanda_chatter.chat(question, window["yolanda"], window)
-            # open_ai_chatter.add_to_history
-            # luis_chatter.add_to_history(response)
-            # mistral_chatter.add_to_history(response)
-
-            # openai_thread = Thread(target = openai, args = (question, window["openai"], ))
-            # openai_thread.daemon = True
-            # openai_thread.start()
-
-            # gemini_thread = Thread(target = gemini, args = (question, window["gemini"], ))
-            # gemini_thread.daemon = True
-            # gemini_thread.start()
-
-            # mistral_thread = Thread(target = mistral, args = (question, window["mistral"], ))
-            # mistral_thread.daemon = True
-            # mistral_thread.start()
-
-    window.close()
+        response = yolanda_chatter.chat(question)
 
 
 if __name__ == "__main__":
