@@ -1,9 +1,7 @@
-from threading import Thread
+from .chatter.gemini_chatter import GeminiChatter
+from .chatter.mistral_chatter import MistralChatter
+from .chatter.openai_chatter import OpenAIChatter
 
-
-from chatters.gemini_chatter import GeminiChatter
-from chatters.mistral_chatter import MistralChatter
-from chatters.openai_chatter import OpenAIChatter
 
 arthur_system_prompt = """
 You are a member of a creative writing workshop group. You will be 

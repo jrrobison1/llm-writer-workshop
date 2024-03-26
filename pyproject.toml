@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "llm-multi-model-workshop"
+version = "0.1.0"
+description = ""
+authors = ["Jason Robison <jrrobison@protonmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+openai = "^1.14.3"
+google-generativeai = "^0.4.1"
+mistralai = "^0.1.6"
+flask = "^3.0.2"
+marshmallow = "^3.21.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
