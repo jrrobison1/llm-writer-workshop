@@ -62,7 +62,12 @@ def chat(text):
 
         publisher_feedback = publisher_chatter.chat(request)
 
-        return [editor_feedback, agent_feedback, writer_feedback, publisher_feedback]
+        return [
+            {"text": editor_feedback, "model": "GPT-4"},
+            {"text": agent_feedback, "model": "GPT-4"},
+            {"text": writer_feedback, "model": "GPT-4"},
+            {"text": publisher_feedback, "model": "GPT-4"},
+        ]
     except Exception as e:
         logger.error(e.message)
         return "I'm sorry, I'm having trouble processing your request. Please try again later."

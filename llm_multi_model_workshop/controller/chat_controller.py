@@ -1,11 +1,17 @@
 from flask import Blueprint, request, jsonify
 from ..service import chat_service
+import logging
 
-chat_bp = Blueprint("chat", __name__, url_prefix="/chat")
+logger = logging.getLogger(__name__)
 
 
-@chat_bp.route("/submit", methods=["POST"])
+chat_bp = Blueprint("chat", __name__, url_prefix="/api/v1")
+
+
+@chat_bp.route("/generate-reviews", methods=["POST"])
 def submit():
+    logger.info(request.get_json())
+
     if (
         request.is_json is False
         or request.get_json() is None
@@ -18,6 +24,6 @@ def submit():
 
     try:
         feedbacks = chat_service.chat(text)
-        return jsonify({"feedbacks": feedbacks})
+        return jsonify(feedbacks)
     except Exception:
         return jsonify({"error_message": "An server error has occurred"}), 500

@@ -13,6 +13,7 @@ mistralai = "^0.1.6"
 flask = "^3.0.2"
 marshmallow = "^3.21.1"
 toml = "^0.10.2"
+flask-cors = "^4.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
