@@ -1,5 +1,5 @@
-from llm_multi_model_workshop.chatter.mistral_chatter import MistralChatter
-from llm_multi_model_workshop.chatter.openai_chatter import OpenAIChatter
+from ..chatter.mistral_chatter import MistralChatter
+from ..chatter.openai_chatter import OpenAIChatter
 from . import config_service
 import logging
 
@@ -8,26 +8,26 @@ logger = logging.getLogger(__name__)
 
 writer_chatter = OpenAIChatter(
     model="gpt-4",
-    system_prompt=config_service.get_writer_config()["persona"],
-    name=config_service.get_writer_config()["name"],
+    system_prompt=config_service.get_writer_prompt(),
+    name=config_service.get_writer_name(),
     max_output_tokens=512,
 )
 editor_chatter = MistralChatter(
     model="mistral-large-latest",
-    system_prompt=config_service.get_editor_config()["persona"],
-    name=config_service.get_editor_config()["name"],
+    system_prompt=config_service.get_editor_prompt(),
+    name=config_service.get_editor_name(),
     max_output_tokens=512,
 )
 agent_chatter = OpenAIChatter(
     model="gpt-4",
-    system_prompt=config_service.get_agent_config()["persona"],
-    name=config_service.get_agent_config()["name"],
+    system_prompt=config_service.get_agent_prompt(),
+    name=config_service.get_agent_name(),
     max_output_tokens=512,
 )
 publisher_chatter = OpenAIChatter(
     model="gpt-4",
-    system_prompt=config_service.get_publisher_config()["persona"],
-    name=config_service.get_publisher_config()["name"],
+    system_prompt=config_service.get_publisher_prompt(),
+    name=config_service.get_publisher_name(),
     max_output_tokens=1024,
 )
 

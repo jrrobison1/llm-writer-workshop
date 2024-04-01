@@ -1,14 +1,14 @@
-import unittest
-from llm_multi_model_workshop.service import health_check_service
+import pytest
+from llm_writer_workshop.service import health_check_service
 
 
-class TestHealthCheckService(unittest.TestCase):
+class TestHealthCheckService:
     def test_health_check(self):
         expected = ("", 200)
         actual = health_check_service.health_check()
 
-        self.assertEqual(actual, expected)
+        assert actual == expected
 
 
 if __name__ == "__main__":
-    unittest.main()
+    pytest.main()
