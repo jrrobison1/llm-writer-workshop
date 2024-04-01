@@ -7,25 +7,25 @@ logger = logging.getLogger(__name__)
 
 
 writer_chatter = OpenAIChatter(
-    model="gpt-4",
+    model="gpt-3.5-turbo",
     system_prompt=config_service.get_writer_prompt(),
     name=config_service.get_writer_name(),
     max_output_tokens=512,
 )
 editor_chatter = MistralChatter(
-    model="mistral-large-latest",
+    model="mistral-small",
     system_prompt=config_service.get_editor_prompt(),
     name=config_service.get_editor_name(),
     max_output_tokens=512,
 )
 agent_chatter = OpenAIChatter(
-    model="gpt-4",
+    model="gpt-3.5-turbo",
     system_prompt=config_service.get_agent_prompt(),
     name=config_service.get_agent_name(),
     max_output_tokens=512,
 )
 publisher_chatter = OpenAIChatter(
-    model="gpt-4",
+    model="gpt-3.5-turbo",
     system_prompt=config_service.get_publisher_prompt(),
     name=config_service.get_publisher_name(),
     max_output_tokens=1024,
@@ -63,11 +63,11 @@ def chat(text):
         publisher_feedback = publisher_chatter.chat(request)
 
         return [
-            {"text": editor_feedback, "model": "GPT-4"},
-            {"text": agent_feedback, "model": "GPT-4"},
-            {"text": writer_feedback, "model": "GPT-4"},
-            {"text": publisher_feedback, "model": "GPT-4"},
+            {"text": editor_feedback, "model": "GPT-4", "role": "editor"},
+            {"text": agent_feedback, "model": "GPT-4", "role": "agent"},
+            {"text": writer_feedback, "model": "GPT-4", "role": "writer"},
+            {"text": publisher_feedback, "model": "GPT-4", "role": "publisher"},
         ]
     except Exception as e:
-        logger.error(e.message)
+        logger.error(e)
         return "I'm sorry, I'm having trouble processing your request. Please try again later."
