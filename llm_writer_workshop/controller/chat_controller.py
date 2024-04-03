@@ -1,15 +1,15 @@
 from flask import Blueprint, request, jsonify
-from ..service import chat_service
+from injector import inject
+from ..service.chat_service import ChatService
 import logging
 
 logger = logging.getLogger(__name__)
-
-
 chat_bp = Blueprint("chat", __name__, url_prefix="/api/v1")
 
 
 @chat_bp.route("/generate-reviews", methods=["POST"])
-def submit():
+@inject
+def generate_reviews(chat_service: ChatService):
     logger.info(request.get_json())
 
     if (
