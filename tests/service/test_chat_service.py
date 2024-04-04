@@ -6,16 +6,7 @@ from llm_writer_workshop.service.config_service import ConfigService
 
 @pytest.fixture
 def config_service_mock():
-    mock = MagicMock(spec=ConfigService)
-    mock.get_writer_prompt.return_value = "Writer prompt"
-    mock.get_writer_name.return_value = "Writer"
-    mock.get_editor_prompt.return_value = "Editor prompt"
-    mock.get_editor_name.return_value = "Editor"
-    mock.get_agent_prompt.return_value = "Agent prompt"
-    mock.get_agent_name.return_value = "Agent"
-    mock.get_publisher_prompt.return_value = "Publisher prompt"
-    mock.get_publisher_name.return_value = "Publisher"
-    return mock
+    return MagicMock(spec=ConfigService)
 
 
 @pytest.fixture
@@ -23,8 +14,14 @@ def chat_service(config_service_mock):
     return ChatService(config_service_mock)
 
 
-def test_init(chat_service, config_service_mock, mocker):
+def test_init(config_service_mock, mocker):
+    chat_service = ChatService(config_service_mock)
+
     assert chat_service.config_service == config_service_mock
+    assert chat_service.editor_chatter is not None
+    assert chat_service.writer_chatter is not None
+    assert chat_service.agent_chatter is not None
+    assert chat_service.publisher_chatter is not None
 
     config_service_mock.get_writer_prompt.assert_called_once()
     config_service_mock.get_writer_name.assert_called_once()
@@ -34,10 +31,6 @@ def test_init(chat_service, config_service_mock, mocker):
     config_service_mock.get_agent_name.assert_called_once()
     config_service_mock.get_publisher_prompt.assert_called_once()
     config_service_mock.get_publisher_name.assert_called_once()
-
-    # Check that the chatter objects were created with the correct parameters. Don't
-    # check the properties of the chatter objects. Test the parameters that
-    # the chatter objects were created with in the __init__ method
 
 
 def test_chat_success(chat_service, mocker):
