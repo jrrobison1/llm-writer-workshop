@@ -18,15 +18,18 @@ class MistralChatter:
         temperature=DEFAULT_TEMPERATURE,
         name
     ):
-        self.mistral_api_key = os.environ.get("MISTRAL_API_KEY")
-        self.model = model
-        self.max_output_tokens = max_output_tokens
-        self.temperature = temperature
-        self.name = name
-        self.message_history = []
-        self.client = MistralClient(api_key=self.mistral_api_key)
-        self.initial_prompt = ChatMessage(role="system", content=system_prompt)
-        self.message_history.append(self.initial_prompt)
+        try:
+            self.mistral_api_key = os.environ.get("MISTRAL_API_KEY")
+            self.model = model
+            self.max_output_tokens = max_output_tokens
+            self.temperature = temperature
+            self.name = name
+            self.message_history = []
+            self.client = MistralClient(api_key=self.mistral_api_key)
+            self.initial_prompt = ChatMessage(role="system", content=system_prompt)
+            self.message_history.append(self.initial_prompt)
+        except Exception as e:
+            print(e)
 
     def chat(self, message):
         if message != "":

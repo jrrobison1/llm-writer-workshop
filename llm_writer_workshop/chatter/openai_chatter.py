@@ -16,14 +16,17 @@ class OpenAIChatter:
         name,
         max_output_tokens=DEFAULT_SYSTEM_PROMPT
     ):
-        self.model = model
-        self.max_output_tokens = max_output_tokens
-        self.name = name
-        self.initial_prompt = {"role": "system", "content": system_prompt}
-        self.message_history = []
-        self.message_history.append(self.initial_prompt)
-        self.openai_api_key = os.environ.get("OPENAI_API_KEY")
-        self.open_ai_client = OpenAI(api_key=self.openai_api_key)
+        try:
+            self.model = model
+            self.max_output_tokens = max_output_tokens
+            self.name = name
+            self.initial_prompt = {"role": "system", "content": system_prompt}
+            self.message_history = []
+            self.message_history.append(self.initial_prompt)
+            self.openai_api_key = os.environ.get("OPENAI_API_KEY")
+            self.open_ai_client = OpenAI(api_key=self.openai_api_key)
+        except Exception as e:
+            print(e)
 
     def chat(self, message):
         user_message = {}
