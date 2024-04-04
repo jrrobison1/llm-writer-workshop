@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "llm-multi-model-workshop"
+name = "llm-writer-workshop"
 version = "0.1.0"
 description = ""
 authors = ["Jason Robison <jrrobison@protonmail.com>"]
