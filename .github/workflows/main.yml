@@ -30,4 +30,4 @@ jobs:
 
       - name: Check code coverage
         run: |
-          python -m coverage report --fail-under=80
+          poetry run coverage report --fail-under=80
