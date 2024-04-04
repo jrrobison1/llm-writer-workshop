@@ -28,9 +28,6 @@ jobs:
         run: |
           poetry run pytest --cov=./ --cov-report=xml
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          file: ./coverage.xml
-          fail_ci_if_error: true
-          threshold: 80% # Specify the coverage threshold here
+      - name: Check code coverage
+        run: |
+          python -m coverage report --fail-under=80
