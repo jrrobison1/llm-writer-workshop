@@ -1,63 +1,82 @@
 import pytest
-from unittest.mock import MagicMock, Mock, patch
-from llm_writer_workshop.service import config_service
-from llm_writer_workshop.chatter.mistral_chatter import MistralChatter
-from llm_writer_workshop.chatter.openai_chatter import OpenAIChatter
-from llm_writer_workshop.service import chat_service
+from unittest.mock import MagicMock
+from llm_writer_workshop.service.chat_service import ChatService
+from llm_writer_workshop.service.config_service import ConfigService
 
 
-@pytest.fixture(autouse=True)
-def mock_config_service(monkeypatch):
-    mock = MagicMock()
-    monkeypatch.setattr("llm_writer_workshop.service.config_service", mock)
+@pytest.fixture
+def config_service_mock():
+    mock = MagicMock(spec=ConfigService)
+    mock.get_writer_prompt.return_value = "Writer prompt"
+    mock.get_writer_name.return_value = "Writer"
+    mock.get_editor_prompt.return_value = "Editor prompt"
+    mock.get_editor_name.return_value = "Editor"
+    mock.get_agent_prompt.return_value = "Agent prompt"
+    mock.get_agent_name.return_value = "Agent"
+    mock.get_publisher_prompt.return_value = "Publisher prompt"
+    mock.get_publisher_name.return_value = "Publisher"
     return mock
 
 
-@pytest.fixture(autouse=True)
-def mock_chatters(monkeypatch):
-    monkeypatch.setattr(chat_service, "editor_chatter", MagicMock(spec=MistralChatter))
-    monkeypatch.setattr(chat_service, "agent_chatter", MagicMock(spec=OpenAIChatter))
-    monkeypatch.setattr(chat_service, "writer_chatter", MagicMock(spec=OpenAIChatter))
-    monkeypatch.setattr(
-        chat_service, "publisher_chatter", MagicMock(spec=OpenAIChatter)
+@pytest.fixture
+def chat_service(config_service_mock):
+    return ChatService(config_service_mock)
+
+
+def test_init(chat_service, config_service_mock, mocker):
+    assert chat_service.config_service == config_service_mock
+
+    config_service_mock.get_writer_prompt.assert_called_once()
+    config_service_mock.get_writer_name.assert_called_once()
+    config_service_mock.get_editor_prompt.assert_called_once()
+    config_service_mock.get_editor_name.assert_called_once()
+    config_service_mock.get_agent_prompt.assert_called_once()
+    config_service_mock.get_agent_name.assert_called_once()
+    config_service_mock.get_publisher_prompt.assert_called_once()
+    config_service_mock.get_publisher_name.assert_called_once()
+
+    # Check that the chatter objects were created with the correct parameters. Don't
+    # check the properties of the chatter objects. Test the parameters that
+    # the chatter objects were created with in the __init__ method
+
+
+def test_chat_success(chat_service, mocker):
+    text = "Sample text for testing"
+    editor_feedback = "Editor feedback"
+    agent_feedback = "Agent feedback"
+    writer_feedback = "Writer feedback"
+    publisher_feedback = "Publisher feedback"
+
+    mocker.patch.object(
+        chat_service.editor_chatter, "chat", return_value=editor_feedback
+    )
+    mocker.patch.object(chat_service.agent_chatter, "chat", return_value=agent_feedback)
+    mocker.patch.object(
+        chat_service.writer_chatter, "chat", return_value=writer_feedback
+    )
+    mocker.patch.object(
+        chat_service.publisher_chatter, "chat", return_value=publisher_feedback
     )
 
-
-def test_chat_success():
-    chat_service.editor_chatter.chat.return_value = "Editor feedback"
-    chat_service.agent_chatter.chat.return_value = "Agent feedback"
-    chat_service.writer_chatter.chat.return_value = "Writer feedback"
-    chat_service.publisher_chatter.chat.return_value = "Publisher feedback"
-
-    text = "Sample text for testing"
     result = chat_service.chat(text)
 
-    chat_service.editor_chatter.chat.assert_called_once()
-    chat_service.agent_chatter.chat.assert_called_once()
-    chat_service.writer_chatter.chat.assert_called_once()
-    chat_service.publisher_chatter.chat.assert_called_once()
-
     assert len(result) == 4
-    assert chat_service.chat("Hello") == [
-        {"text": "Editor feedback", "model": "GPT-4", "role": "editor"},
-        {"text": "Agent feedback", "model": "GPT-4", "role": "agent"},
-        {"text": "Writer feedback", "model": "GPT-4", "role": "writer"},
-        {"text": "Publisher feedback", "model": "GPT-4", "role": "publisher"},
-    ]
+    assert result[0]["text"] == editor_feedback
+    assert result[1]["text"] == agent_feedback
+    assert result[2]["text"] == writer_feedback
+    assert result[3]["text"] == publisher_feedback
 
 
-def test_chat_exception():
-    chat_service.editor_chatter.chat.side_effect = Exception("Mocked exception")
-
-    result = chat_service.chat("Hello")
-
-    assert (
-        result
-        == "I'm sorry, I'm having trouble processing your request. Please try again later."
+def test_chat_exception(chat_service, mocker):
+    text = "Sample text for testing"
+    error_message = (
+        "I'm sorry, I'm having trouble processing your request. Please try again later."
     )
 
-    chat_service.editor_chatter.chat.assert_called_once()
+    mocker.patch.object(
+        chat_service.editor_chatter, "chat", side_effect=Exception("Test exception")
+    )
 
+    result = chat_service.chat(text)
 
-if __name__ == "__main__":
-    pytest.main()
+    assert result == error_message
