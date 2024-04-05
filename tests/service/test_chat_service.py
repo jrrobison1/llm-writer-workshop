@@ -1,15 +1,15 @@
-import pytest
+from pytest import fixture
 from unittest.mock import MagicMock
 from llm_writer_workshop.service.chat_service import ChatService
 from llm_writer_workshop.service.config_service import ConfigService
 
 
-@pytest.fixture
+@fixture
 def config_service_mock():
     return MagicMock(spec=ConfigService)
 
 
-@pytest.fixture
+@fixture
 def chat_service(config_service_mock):
     return ChatService(config_service_mock)
 

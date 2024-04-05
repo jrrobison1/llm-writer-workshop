@@ -1,14 +1,14 @@
-import pytest
+from pytest import fixture
 from app import create_app  # Adjust the import according to your application structure
 
 
-@pytest.fixture
+@fixture
 def app():
     app = create_app()
     yield app
 
 
-@pytest.fixture
+@fixture
 def client(app):
     return app.test_client()
 

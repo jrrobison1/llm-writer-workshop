@@ -1,14 +1,13 @@
-import pytest
-from unittest.mock import mock_open, patch
+from pytest import fixture
 from llm_writer_workshop.service.config_service import ConfigService
 
 
-@pytest.fixture
+@fixture
 def config_service():
     return ConfigService()
 
 
-@pytest.fixture
+@fixture
 def mock_file_read(mocker):
     mocker.patch(
         "toml.load",
