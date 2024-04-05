@@ -31,3 +31,20 @@ jobs:
       - name: Check code coverage
         run: |
           poetry run coverage report --fail-under=80
+
+          - name: Start the web app
+          run: |
+            poetry run python app.py &
+            
+      - name: Wait for the web app to start
+        run: sleep 5
+          
+      - name: Perform health check
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:5000/health)
+          if [[ $response == "200" ]]; then
+            echo "Health check passed"
+          else
+            echo "Health check failed with status code $response"
+            exit 1
+          fi
