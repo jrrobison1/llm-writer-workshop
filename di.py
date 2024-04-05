@@ -1,6 +1,7 @@
 from injector import Module, provider, singleton
 from llm_writer_workshop.service.chat_service import ChatService
 from llm_writer_workshop.service.config_service import ConfigService
+from llm_writer_workshop.service.health_check_service import HealthCheckService
 
 
 class AppModule(Module):
@@ -13,3 +14,8 @@ class AppModule(Module):
     @provider
     def provide_config_service(self) -> ConfigService:
         return ConfigService()
+
+    @singleton
+    @provider
+    def provide_health_check_service(self) -> HealthCheckService:
+        return HealthCheckService()
