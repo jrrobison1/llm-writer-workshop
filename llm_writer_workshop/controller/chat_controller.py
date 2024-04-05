@@ -10,8 +10,6 @@ chat_bp = Blueprint("chat", __name__, url_prefix="/api/v1")
 @chat_bp.route("/generate-reviews", methods=["POST"])
 @inject
 def generate_reviews(chat_service: ChatService):
-    logger.info(request.get_json())
-
     if (
         request.is_json is False
         or request.get_json() is None
@@ -23,7 +21,12 @@ def generate_reviews(chat_service: ChatService):
     text = data["text"]
 
     try:
-        feedbacks = chat_service.chat(text)
-        return jsonify(feedbacks)
-    except Exception:
+        feedbacks = []
+        for model in data["models"]:
+            feedback = chat_service.chat(text, model["role"], model["model"])
+            feedbacks.append(feedback)
+        data_return = jsonify(feedbacks)
+        return data_return
+    except Exception as e:
+        logger.fatal(e)
         return jsonify({"error_message": "An server error has occurred"}), 500

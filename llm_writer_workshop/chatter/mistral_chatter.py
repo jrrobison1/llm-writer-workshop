@@ -2,8 +2,10 @@ import os
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
 
+from llm_writer_workshop.chatter.chatter import Chatter
 
-class MistralChatter:
+
+class MistralChatter(Chatter):
     DEFAULT_MODEL = "mistral-small"
     DEFAULT_MAX_OUTPUT_TOKENS = 512
     DEFAULT_SYSTEM_PROMPT = "You are a helpful assistant"

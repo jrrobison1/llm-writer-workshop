@@ -1,13 +1,15 @@
 import os
 from openai import OpenAI
 
+from llm_writer_workshop.chatter.chatter import Chatter
+
 DEFAULT_MODEL = "gpt-3.5-turbo"
 DEFAULT_MAX_OUTPUT_TOKENS = 512
 DEFAULT_SYSTEM_PROMPT = "You are a helpful assistant"
 DEFAULT_TEMPERATURE = 1
 
 
-class OpenAIChatter:
+class OpenAIChatter(Chatter):
     def __init__(
         self,
         *,

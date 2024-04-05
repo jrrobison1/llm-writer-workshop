@@ -1,8 +1,10 @@
 import os
 import google.generativeai as genai
 
+from llm_writer_workshop.chatter.chatter import Chatter
 
-class GeminiChatter:
+
+class GeminiChatter(Chatter):
     DEFAULT_MODEL = "gemini-pro"
     DEFAULT_MAX_OUTPUT_TOKENS = 512
     DEFAULT_SYSTEM_PROMPT = "You are a helpful assistant"
