@@ -1,6 +1,7 @@
 import logging
 import os
 import google.generativeai as genai
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
 
 from llm_writer_workshop.chatter.chatter import Chatter
 
@@ -40,14 +41,13 @@ class GeminiChatter(Chatter):
                 max_output_tokens=self.max_output_tokens,
                 temperature=self.temperature,
             ),
-            # safety_settings={
-            #     "HARM_CATEGORY_HARASSMENT": "BLOCK_NONE",
-            #     "HARM_CATEGORY_HATE_SPEECH": "BLOCK_ONLY_HIGH",
-            #     "HARM_CATEGORY_SEXUALLY_EXPLICIT": "BLOCK_NONE",
-            #     "HARM_CATEGORY_DANGEROUS_CONTENT": "BLOCK_NONE",
-            # },
+            safety_settings={
+                HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+                HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+                HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE,
+                HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+            },
         )
-        logger.error(response)
 
         return response.text
 
