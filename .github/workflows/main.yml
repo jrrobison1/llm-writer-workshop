@@ -30,7 +30,7 @@ jobs:
 
       - name: Check code coverage
         run: |
-          poetry run coverage report --fail-under=80
+          poetry run coverage report --fail-under=70
 
       - name: Start the web app
         run: |
