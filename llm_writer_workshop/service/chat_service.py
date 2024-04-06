@@ -9,8 +9,7 @@ logger = logging.getLogger(__name__)
 
 class ChatService:
 
-    def __init__(self, config_service: ConfigService, chatter_factory: ChatterFactory):
-        self.config_service = config_service
+    def __init__(self, chatter_factory: ChatterFactory):
         self.chatter_factory = chatter_factory
 
     def chat(self, text, role, model):

@@ -18,16 +18,20 @@ def test_generate_reviews_success(client, mocker):
         "llm_writer_workshop.service.chat_service.ChatService.chat",
         return_value={"feedback": "Positive"},
     )
-    response = client.post(
-        "/api/v1/generate-reviews", json={"text": "This is a sample review text"}
-    )
+
+    test_json = {
+        "text": "This is a sample review text",
+        "models": [{"role": "agent", "model": "gpt2"}],
+    }
+
+    response = client.post("/api/v1/generate-reviews", json=test_json)
     assert response.status_code == 200
-    assert response.json == {"feedback": "Positive"}
+    assert response.json == [{"feedback": "Positive"}]
 
 
 def test_generate_reviews_no_json(client):
     response = client.post("/api/v1/generate-reviews", data="This is not a JSON")
-    assert response.status_code == 415
+    assert response.status_code == 400
 
 
 def test_generate_reviews_empty_json(client):

@@ -21,10 +21,8 @@ class AppModule(Module):
 
     @singleton
     @provider
-    def provide_chat_service(
-        self, configService: ConfigService, chatter_factory: ChatterFactory
-    ) -> ChatService:
-        return ChatService(configService, chatter_factory)
+    def provide_chat_service(self, chatter_factory: ChatterFactory) -> ChatService:
+        return ChatService(chatter_factory)
 
     @singleton
     @provider

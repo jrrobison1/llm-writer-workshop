@@ -33,11 +33,11 @@ def mock_file_read(mocker):
 
 
 def test_initialize_config_logs_data(mocker, config_service, mock_file_read):
-    mock_logger_info = mocker.patch(
-        "llm_writer_workshop.service.config_service.logger.info"
+    mock_logger_debug = mocker.patch(
+        "llm_writer_workshop.service.config_service.logger.debug"
     )
     config_service.initialize_config()
-    mock_logger_info.assert_called()
+    mock_logger_debug.assert_called()
 
 
 def test_initialize_config_loads_data(config_service, mock_file_read):
