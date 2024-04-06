@@ -1,3 +1,4 @@
+import logging
 from flask import Flask
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -10,6 +11,7 @@ from llm_writer_workshop.controller.health_check_controller import health_bp
 
 def create_app():
     app = Flask(__name__)
+    logging.basicConfig(level=logging.DEBUG)
     CORS(app)
     load_dotenv(override=True)
 
@@ -17,8 +19,6 @@ def create_app():
     app.register_blueprint(health_bp)
 
     FlaskInjector(app=app, modules=[AppModule()])
-
-    ConfigService().initialize_config()
 
     return app
 

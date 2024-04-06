@@ -10,14 +10,14 @@ class ConfigService:
 
     def initialize_config(self):
         with open("config/config.toml", "r") as file:
+            logger.debug("Loading config file")
             self.data = toml.load(file)
-
-        logger.info(self.data)
 
     def get_agent_name(self):
         try:
             return self.data["agent_config"]["name"]
-        except KeyError:
+        except KeyError as e:
+            logger.error(e)
             return "Agent"
 
     def get_agent_prompt(self):

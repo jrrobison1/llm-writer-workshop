@@ -25,6 +25,7 @@ def generate_reviews(chat_service: ChatService):
         for model in data["models"]:
             feedback = chat_service.chat(text, model["role"], model["model"])
             feedbacks.append(feedback)
+        logger.debug(feedbacks)
         data_return = jsonify(feedbacks)
         return data_return
     except Exception as e:
