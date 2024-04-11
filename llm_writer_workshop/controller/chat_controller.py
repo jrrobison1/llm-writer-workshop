@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from injector import inject
 from ..service.chat_service import ChatService
 import logging
+import concurrent.futures
 
 logger = logging.getLogger(__name__)
 chat_bp = Blueprint("chat", __name__, url_prefix="/api/v1")
@@ -21,10 +22,12 @@ def generate_reviews(chat_service: ChatService):
     text = data["text"]
 
     try:
-        feedbacks = []
-        for model in data["models"]:
-            feedback = chat_service.chat(text, model["role"], model["model"])
-            feedbacks.append(feedback)
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            futures = [
+                executor.submit(chat_service.chat, text, model["role"], model["model"])
+                for model in data["models"]
+            ]
+            feedbacks = [future.result() for future in futures]
         logger.debug(feedbacks)
         data_return = jsonify(feedbacks)
         return data_return
