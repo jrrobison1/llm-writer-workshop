@@ -3,15 +3,9 @@
 [![CI](https://github.com/jrrobison1/llm-writer-workshop/actions/workflows/backend.yml/badge.svg)](https://github.com/jrrobison1/llm-writer-workshop/actions/workflows/backend.yml) [![CI](https://github.com/jrrobison1/llm-writer-workshop/actions/workflows/frontend.yml/badge.svg)](https://github.com/jrrobison1/llm-writer-workshop/actions/workflows/frontend.yml)
 
 ## Description
-
-LLM Writer Workshop is a Python project that simulates a writing workshop with different roles: A writing agent, an editor, a fellow writer, and a publisher. It uses various selectable AI models for different roles, including OpenAI's GPT-4 and GPT-3.5 Turbo; Anthropic's Claude Haiku, Sonnet, and Opus; Google's Gemini; and Mistral's small, medium, and large.
-
-
-
-
+LLM Writer Workshop is a Python project that simulates a creative writing workshop with different roles: A writing agent, an editor, a fellow writer, and a publisher. It uses various selectable AI models for different roles, including OpenAI's GPT-4 and GPT-3.5 Turbo; Anthropic's Claude Haiku, Sonnet, and Opus; Google's Gemini; and Mistral's small, medium, and large.
 
 ![Publisher Feedback](/.images/publisher_feedback.png "Publisher Feedback")
-
 
 ## Installation
 
@@ -48,14 +42,15 @@ export GEMINI_API_KEY=<your_gemini_api_key>
 export MISTRAL_API_KEY=<your_mistral_api_key>
 ```
 
-<br />
-
 ### UI
 ```sh
 cd ui
 npm install
 ```
-<br />
+
+### Optional Configuration
+The different personas in the workshop (editor, agent, writer, and publisher) are created through system prompts, which are defined in /service/config/config.toml. You may edit this file to easily use your own prompts instead of the defaults.
+
 
 ## Launching the app
 ### Backend
@@ -68,7 +63,6 @@ cd service && poetry run python app.py
 cd ui
 npm start
 ```
-<br />
 
 ## Testing
 ### Backend
@@ -86,7 +80,6 @@ npm test
 ```
 
 ## License
-
 This project is licensed under the terms of the MIT license.
 
 ## Motivation
