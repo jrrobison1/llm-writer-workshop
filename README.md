@@ -4,7 +4,9 @@
 
 ## Description
 
-LLM Writer Workshop is a Python project that simulates a writing workshop with different roles: An writing agents, an editor, a fellow writer, and a publisher publishers. It uses various selectable AI models for different roles, including OpenAI's GPT-4 and GPT-3.5 Turbo; Anthropic's Claude Haiku, Sonnet, and Opus; Google's Gemini; and Mistral's small, medium, and large.
+LLM Writer Workshop is a Python project that simulates a writing workshop with different roles: A writing agent, an editor, a fellow writer, and a publisher. It uses various selectable AI models for different roles, including OpenAI's GPT-4 and GPT-3.5 Turbo; Anthropic's Claude Haiku, Sonnet, and Opus; Google's Gemini; and Mistral's small, medium, and large.
+
+
 
 ![Publisher Feedback](/.images/publisher_feedback.png "Publisher Feedback")
 
@@ -12,6 +14,7 @@ LLM Writer Workshop is a Python project that simulates a writing workshop with d
 ## Installation
 
 ### Backend
+#### Dependencies
 This project uses [Poetry](https://python-poetry.org/) for dependency management. To install the project dependencies, first install Poetry:
 ```sh
 pip install poetry
@@ -43,16 +46,16 @@ export GEMINI_API_KEY=<your_gemini_api_key>
 export MISTRAL_API_KEY=<your_mistral_api_key>
 ```
 
-<br /><br />
+<br />
 
 ### UI
 ```sh
 cd ui
 npm install
 ```
+<br />
 
-
-## Usage
+## Launching the app
 ### Backend
 ```sh
 cd service && poetry run python app.py
