@@ -1,0 +1,158 @@
+.app {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #fdf6e3;
+  /* Updated background color */
+  min-height: 100vh;
+  gap: 20px;
+}
+
+.app-header {
+  width: 100%;
+  padding: 20px 20px;
+  padding-left: 60px;
+  background-color: #fdf6e3;
+  /* Updated to match app background color */
+  color: #333;
+  /* margin-bottom: 20px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: column;
+}
+
+.app-header h1 {
+  margin: 0;
+  padding-bottom: 10px;
+  font-size: 2.5em;
+}
+
+.app-header p {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.main-editor {
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.main-editor textarea {
+  width: 100%;
+  height: 600px;
+  padding: 20px;
+  font-size: 16px;
+  border: 1px solid #93a1a1;
+  /* Updated border color */
+  border-radius: 4px;
+  background-color: #eee8d5;
+  /* Updated background color */
+  color: #586e75;
+  /* Updated text color */
+  resize: vertical;
+}
+
+.main-editor button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #268bd2;
+  /* Updated background color to match the button */
+  color: #fdf6e3;
+  /* Updated text color to match the button */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* Adding transition for interactive states */
+}
+
+.main-editor button:hover,
+.main-editor button:focus {
+  background-color: #2aa198;
+  /* Updated hover state background color to a complementary color */
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  width: 350px;
+  /* Adjust width as needed */
+}
+
+.workshop-member {
+  background-color: #eee8d5;
+  /* Updated background color */
+  border: 1px solid #93a1a1;
+  /* Updated border color */
+  border-radius: 4px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  color: #586e75;
+  /* Updated text color */
+}
+
+.workshop-member:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* Added shadow on hover for depth */
+}
+
+.workshop-member select {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  background-color: #fdf6e3;
+  /* Updated background color */
+  color: #586e75;
+  /* Updated text color */
+  border: 1px solid #93a1a1;
+  /* Updated border color */
+}
+
+.workshop-member textarea {
+  width: 100%;
+  height: 200px;
+  font-size: 14px;
+  border: none;
+  resize: none;
+  background-color: #fdf6e3;
+  /* Updated background color */
+  color: #586e75;
+  /* Updated text color */
+  cursor: pointer;
+}
+
+.workshop-member.expanded {
+  position: fixed;
+  top: 50%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  max-width: 800px;
+  height: 70%;
+  z-index: 999;
+  overflow: auto;
+  padding: 20px;
+  background-color: #fdf6e3;
+  /* Updated background color */
+  border: 1px solid #93a1a1;
+  /* Updated border color */
+}
+
+.workshop-members.expanded .workshop-member:not(.expanded) {
+  display: none;
+}
+
+.workshop-member.expanded textarea {
+  height: 90%;
+  background-color: #eee8d5;
+  /* Updated background color */
+  color: #586e75;
+  /* Updated text color */
+}

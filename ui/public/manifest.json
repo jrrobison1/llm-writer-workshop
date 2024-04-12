@@ -1,0 +1,8 @@
+{
+  "short_name": "LLM Writer Workshop",
+  "name": "LLM Writer Workshop",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

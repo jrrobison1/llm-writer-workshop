@@ -1,4 +1,4 @@
-name: CI
+name: Backend
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  build_backend:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,20 +19,24 @@ jobs:
           python-version: 3.x
 
       - name: Install dependencies
+        working-directory: ./service
         run: |
           python -m pip install --upgrade pip
           pip install poetry
           poetry install
 
       - name: Run tests
+        working-directory: ./service
         run: |
           poetry run pytest --cov=./ --cov-report=xml
 
       - name: Check code coverage
+        working-directory: ./service
         run: |
           poetry run coverage report --fail-under=70
 
       - name: Start the web app
+        working-directory: ./service
         run: |
           poetry run python app.py &
             
