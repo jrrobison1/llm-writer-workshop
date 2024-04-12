@@ -53,6 +53,8 @@ The different personas in the workshop (editor, agent, writer, and publisher) ar
 
 
 ## Launching the app
+Perform the following steps, then visit http://localhost:3000 in your browser.
+
 ### Backend
 ```sh
 cd service && poetry run python app.py
