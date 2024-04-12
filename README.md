@@ -24,31 +24,36 @@ You also need to set up your environment variables. Copy the [``.env.example``](
 cp .env.example .env
 ```
 
-```sh
-cd service && poetry run python app.py
-```
 
 ### UI
 ```sh
 npm install
 ```
+
+## Usage
+### Backend
+```sh
+cd service && poetry run python app.py
+```
+
+### Frontend
 ```sh
 npm start
 ```
 
 
-## Usage
-```sh
-poetry run python app.py
-```
-
-
 ## Testing
+### Backend
 
 This project uses pytest for testing. To run the tests, use the following command:
 
 ```sh
 poetry run pytest
+```
+
+### Frontend
+```sh
+npm test
 ```
 
 ## License
