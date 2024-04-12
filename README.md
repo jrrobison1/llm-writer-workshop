@@ -6,6 +6,9 @@
 
 LLM Writer Workshop is a Python project that simulates a writing workshop with different roles such as agents, editors, writers, and publishers. It uses various AI models for different roles, including OpenAI's GPT-3.5 Turbo, Gemini, and Mistral.
 
+![Main Editor](/.images/main_editor.png "Main Editor")
+
+
 ## Installation
 
 This project uses [Poetry](https://python-poetry.org/) for dependency management. To install the project dependencies, first install Poetry, then run:
