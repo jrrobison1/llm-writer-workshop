@@ -8,6 +8,8 @@ LLM Writer Workshop is a Python project that simulates a writing workshop with d
 
 
 
+
+
 ![Publisher Feedback](/.images/publisher_feedback.png "Publisher Feedback")
 
 
@@ -66,7 +68,7 @@ cd service && poetry run python app.py
 cd ui
 npm start
 ```
-
+<br />
 
 ## Testing
 ### Backend
@@ -87,6 +89,9 @@ npm test
 
 This project is licensed under the terms of the MIT license.
 
-## Contact
-
-If you have any questions, feel free to reach out to me.
+## Motivation
+I had several movitations for this project:
+1. I wanted an app that would _help_ me write, not write for me
+2. I wanted to learn Python backend development
+3. I just wanted to have fun :-)
+4. In the spirit of writing an app that uses LLM's, I wrote the UI/frontend almost entirely with LLMs (GPT-4 and Claude Opus, to be specific)
