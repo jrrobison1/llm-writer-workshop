@@ -1,6 +1,6 @@
 # LLM Writer Workshop
 
-[![CI](https://github.com/jrrobison1/llm-writer-workshop/actions/workflows/main.yml/badge.svg)](https://github.com/jrrobison1/llm-writer-workshop/actions/workflows/main.yml)
+[![CI](https://github.com/jrrobison1/llm-writer-workshop/actions/workflows/backend.yml/badge.svg)](https://github.com/jrrobison1/llm-writer-workshop/actions/workflows/backend.yml) [![CI](https://github.com/jrrobison1/llm-writer-workshop/actions/workflows/frontend.yml/badge.svg)](https://github.com/jrrobison1/llm-writer-workshop/actions/workflows/frontend.yml)
 
 ## Description
 
