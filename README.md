@@ -11,6 +11,7 @@ LLM Writer Workshop is a Python project that simulates a writing workshop with d
 
 ## Installation
 
+### Backend
 This project uses [Poetry](https://python-poetry.org/) for dependency management. To install the project dependencies, first install Poetry, then run:
 
 ```sh
@@ -22,6 +23,19 @@ You also need to set up your environment variables. Copy the [``.env.example``](
 ```sh
 cp .env.example .env
 ```
+
+```sh
+cd service && poetry run python app.py
+```
+
+### UI
+```sh
+npm install
+```
+```sh
+npm start
+```
+
 
 ## Usage
 ```sh
