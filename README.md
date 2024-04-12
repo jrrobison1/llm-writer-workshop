@@ -64,21 +64,6 @@ cd ui
 npm start
 ```
 
-## Testing
-### Backend
-This backend uses pytest for testing. To run the tests, use the following command:
-
-```sh
-cd service
-poetry run pytest
-```
-
-### Frontend
-```sh
-cd ui
-npm test
-```
-
 ## License
 This project is licensed under the terms of the MIT license.
 
