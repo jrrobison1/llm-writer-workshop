@@ -4,7 +4,7 @@
 
 ## Description
 
-LLM Writer Workshop is a Python project that simulates a writing workshop with different roles such as agents, editors, writers, and publishers. It uses various AI models for different roles, including OpenAI's GPT-3.5 Turbo, Gemini, and Mistral.
+LLM Writer Workshop is a Python project that simulates a writing workshop with different roles: An writing agents, an editor, a fellow writer, and a publisher publishers. It uses various selectable AI models for different roles, including OpenAI's GPT-4 and GPT-3.5 Turbo; Anthropic's Claude Haiku, Sonnet, and Opus; Google's Gemini; and Mistral's small, medium, and large.
 
 ![Publisher Feedback](/.images/publisher_feedback.png "Publisher Feedback")
 
