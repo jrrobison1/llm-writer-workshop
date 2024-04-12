@@ -20,15 +20,19 @@ jobs:
           node-version: "16"
 
       - name: Install dependencies
+        working-directory: ./ui
         run: npm ci
 
       - name: Build the frontend
+        working-directory: ./ui
         run: npm run build
 
       - name: Run unit tests
+        working-directory: ./ui
         run: npm test
 
       - name: Start the application
+        working-directory: ./ui
         run: |
           npm start &
           sleep 5
