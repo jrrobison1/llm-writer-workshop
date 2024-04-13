@@ -4,7 +4,7 @@
 
 
 ## Description
-LLM Writer Workshop is a project that simulates a creative writing workshop with different roles: A writing agent, an editor, a fellow writer, and a publisher. It uses various selectable AI models for different roles, including OpenAI's GPT-4 and GPT-3.5 Turbo; Anthropic's Claude Haiku, Sonnet, and Opus; Google's Gemini; and Mistral's small, medium, and large. The project is written with a Python/Flask backend and a TypeScript/React frontend.
+LLM Writer Workshop simulates a creative writing workshop with different roles: A writing agent, an editor, a fellow writer, and a publisher. It uses various selectable AI models for different roles, including OpenAI's GPT-4 and GPT-3.5 Turbo; Anthropic's Claude Haiku, Sonnet, and Opus; Google's Gemini; and Mistral's small, medium, and large. The project is written with a Python/Flask backend and a TypeScript/React frontend.
 
 I made this because I wanted AI to help me write, not write _for_ me. I wanted the virtual experience of getting feedback from multiple points of view within the same workshop session. And I wanted the ability to receive different points of view—by selecting different models—even for the same persona.
 
