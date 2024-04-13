@@ -13,11 +13,13 @@ class ChatModel(Schema):
     @validates("model")
     def validate_model(self, value):
         if value not in [
-            "gpt-4",
+            "gpt-4-turbo",
+            "GPT-4",
             "gpt-3.5-turbo",
             "mistral-small",
             "mistral-medium",
-            "mistral-large",
+            "mistral-large-latest",
+            "gemini-pro-1.5",
             "gemini-pro",
             "claude-3-haiku-20240307",
             "claude-3-sonnet-20240229",

@@ -23,14 +23,14 @@ class ChatterFactory:
             name = self.config_service.get_publisher_name()
             system_prompt = self.config_service.get_publisher_prompt()
 
-        if model == "gpt-3.5-turbo" or model == "gpt-4":
+        if model == "gpt-3.5-turbo" or model == "gpt-4" or model == "gpt-4-turbo":
             return OpenAIChatter(
                 model=model,
                 system_prompt=system_prompt,
                 name=name,
                 max_output_tokens=512,
             )
-        elif model == "gemini-pro":
+        elif model == "gemini-pro" or model == "gemini-pro-1.5":
             return GeminiChatter(
                 model=model,
                 system_prompt=system_prompt,
@@ -40,7 +40,7 @@ class ChatterFactory:
         elif (
             model == "mistral-small"
             or model == "mistral-medium"
-            or model == "mistral-large"
+            or model == "mistral-large-latest"
         ):
             return MistralChatter(
                 model=model,
