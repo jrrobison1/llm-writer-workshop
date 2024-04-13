@@ -34,6 +34,7 @@ Copy the `.env.example` in the "service" directory to a new file named `.env` in
 
 ```sh
 cp ./service/.env.example ./service/.env'
+```
 
 # Or use your favorite editor here
 ```sh
