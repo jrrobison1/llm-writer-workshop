@@ -52,7 +52,7 @@ describe('App', () => {
   test('changes model for workshop member', () => {
     render(<App />);
     const modelSelect = screen.getAllByRole('combobox')[0];
-    fireEvent.change(modelSelect, { target: { value: 'gpt-4' } });
-    expect(modelSelect).toHaveValue('gpt-4');
+    fireEvent.change(modelSelect, { target: { value: 'gpt-4-turbo' } });
+    expect(modelSelect).toHaveValue('gpt-4-turbo');
   });
 });
