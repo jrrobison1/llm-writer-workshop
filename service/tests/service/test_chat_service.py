@@ -26,11 +26,23 @@ def test_chat_success(chat_service, mock_chatter_factory, mocker):
     mock_chatter_factory.get_chatter.assert_called_once_with("role", "model")
 
 
+def test_chat_all_success(chat_service, mock_chatter_factory, mocker):
+    mock_chatter_factory.get_chatter.return_value.chat.return_value = "Review"
+    assert chat_service.chatter_factory == mock_chatter_factory
+
+    chat_request = {"text": "text", "models": [{"role": "role", "model": "model"}]}
+
+    actual = chat_service.chat_all(chat_request)
+
+    assert actual == [{"review": "Review", "role": "role"}]
+
+    mock_chatter_factory.get_chatter.assert_called_once_with("role", "model")
+
+
 def test_chat_exception(chat_service, mock_chatter_factory, mocker):
     error_message = (
         "I'm sorry, I'm having trouble processing your request. Please try again later."
     )
-
     mock_chatter_factory.get_chatter.return_value.chat.side_effect = Exception("Error")
 
     result = chat_service.chat("test_text", "test_role", "test_model")
