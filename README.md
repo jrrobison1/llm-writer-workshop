@@ -72,7 +72,7 @@ npm install
 
 
 
-## Manually launchng the app after building the frontend and the backend:
+## Manually launching the app after building the frontend and the backend:
 Perform the following steps, then visit http://localhost:3000 in your browser.
 
 ### Backend
