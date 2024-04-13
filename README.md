@@ -33,11 +33,9 @@ Mistral: https://docs.mistral.ai/
 Copy the `.env.example` in the "service" directory to a new file named `.env` in the "service" directory, and replace the placeholders with your actual API keys:
 
 ```sh
-cp ./service/.env.example ./service/.env'
-```
+cp ./service/.env.example ./service/.env
 
 # Or use your favorite editor here
-```sh
 vim ./service/.env
 ```
 
