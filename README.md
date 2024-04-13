@@ -10,21 +10,20 @@ I made this because I wanted AI to help me write, not write _for_ me. I wanted t
 
 ![Publisher Feedback](/.images/publisher_feedback.png "Publisher Feedback")
 
-## Installation
+## Easy build and run with Docker
+- Clone this repository and cd into it
+- Install Docker if have not already: https://docs.docker.com/engine/install/
+- Ensure you have your API keys set (see below)
 
-### Backend
-#### Dependencies
-This project uses [Poetry](https://python-poetry.org/) for dependency management. To install the project dependencies, first install Poetry:
+Then:
 ```sh
-pip install poetry
-```
-Then run:
-```sh
-cd service
-poetry install
+docker-compose up --build
 ```
 
-#### API Keys
+Connect to http://localhost:3000 in your browser.
+
+
+### API Keys
 You will need API keys to run this project. Here are instructions for creating these api keys:<br />
 OpenAI: https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key<br />
 Claude: https://docs.anthropic.com/claude/reference/getting-started-with-the-api<br />
@@ -44,6 +43,22 @@ export ANTHROPIC_API_KEY=<your_anthropic_api_key>
 export GEMINI_API_KEY=<your_gemini_api_key>
 export MISTRAL_API_KEY=<your_mistral_api_key>
 ```
+
+
+## Building manually
+
+### Backend
+#### Dependencies
+This project uses [Poetry](https://python-poetry.org/) for dependency management. To install the project dependencies, first install Poetry:
+```sh
+pip install poetry
+```
+Then run:
+```sh
+cd service
+poetry install
+```
+
 
 ### UI
 ```sh
