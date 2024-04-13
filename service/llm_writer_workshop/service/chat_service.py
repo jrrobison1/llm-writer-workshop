@@ -1,7 +1,4 @@
 from llm_writer_workshop.chatter.chatter_factory import ChatterFactory
-from ..chatter.mistral_chatter import MistralChatter
-from ..chatter.openai_chatter import OpenAIChatter
-from ..service.config_service import ConfigService
 from ..schema.chat_request import ChatRequest
 import concurrent.futures
 import logging

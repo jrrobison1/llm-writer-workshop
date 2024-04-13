@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, jsonify
 from injector import inject
 from ..service.chat_service import ChatService
 import logging

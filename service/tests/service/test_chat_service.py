@@ -1,7 +1,5 @@
 from pytest import fixture
-from unittest.mock import MagicMock
 from llm_writer_workshop.service.chat_service import ChatService
-from llm_writer_workshop.service.config_service import ConfigService
 
 
 @fixture

@@ -1,5 +1,5 @@
 from pytest import fixture
-from app import create_app  # Adjust the import according to your application structure
+from app import create_app
 
 
 @fixture
