@@ -5,13 +5,13 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy necessary dependencies first for optimized layer caching
-COPY package*.json ./
+COPY ui/package*.json ./
 
 # Install project dependencies
 RUN npm install
 
 # Copy the rest of the project files
-COPY . .
+COPY ui/. .
 
 # Build the production-ready image of your React app
 RUN npm run build
