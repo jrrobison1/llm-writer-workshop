@@ -5,6 +5,8 @@
 ## Description
 LLM Writer Workshop is a Python project that simulates a creative writing workshop with different roles: A writing agent, an editor, a fellow writer, and a publisher. It uses various selectable AI models for different roles, including OpenAI's GPT-4 and GPT-3.5 Turbo; Anthropic's Claude Haiku, Sonnet, and Opus; Google's Gemini; and Mistral's small, medium, and large.
 
+I made this because I wanted AI to help me write, not write _for_ me. I wanted the virtual experience of getting feedback from multiple points of view within the same workshop session. And I wanted the ability to receive different points of view—by selecting different models—even for the same persona.
+
 ![Publisher Feedback](/.images/publisher_feedback.png "Publisher Feedback")
 
 ## Installation
@@ -68,10 +70,3 @@ npm start
 
 ## License
 This project is licensed under the terms of the MIT license.
-
-## Motivation
-I had several movitations for this project:
-1. I wanted an app that would _help_ me write, not write for me
-2. I wanted to learn Python backend development
-3. I just wanted to have fun :-)
-4. In the spirit of writing an app that uses LLM's, I wrote the UI/frontend almost entirely with LLMs (GPT-4 and Claude Opus, to be specific)
