@@ -38,7 +38,7 @@ describe('WorkshopMember', () => {
     };
     render(<WorkshopMember {...props} />);
     const selectElement = screen.getByRole('combobox');
-    fireEvent.change(selectElement, { target: { value: 'gpt-4' } });
-    expect(props.onModelChange).toHaveBeenCalledWith('gpt-4');
+    fireEvent.change(selectElement, { target: { value: 'gpt-4-turbo' } });
+    expect(props.onModelChange).toHaveBeenCalledWith('gpt-4-turbo');
   });
 });
