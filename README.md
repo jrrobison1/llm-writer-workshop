@@ -11,9 +11,9 @@ I made this because I wanted AI to help me write, not write _for_ me. I wanted t
 ![Publisher Feedback](/.images/publisher_feedback.png "Publisher Feedback")
 
 ## Easy build and run with Docker
-- Clone this repository and cd into it
-- Install Docker if have not already: https://docs.docker.com/engine/install/
-- Ensure you have your API keys set (see below)
+1. Clone this repository and cd into it
+2. Install Docker if have not already: https://docs.docker.com/engine/install/
+3. Ensure you have your API keys set (see below)
 
 Then:
 ```sh
