@@ -2,7 +2,8 @@ from flask import Blueprint, request, jsonify
 from injector import inject
 from ..service.chat_service import ChatService
 import logging
-import concurrent.futures
+from ..schema.chat_request import ChatRequest
+from webargs.flaskparser import use_kwargs
 
 logger = logging.getLogger(__name__)
 chat_bp = Blueprint("chat", __name__, url_prefix="/api/v1")
@@ -10,24 +11,10 @@ chat_bp = Blueprint("chat", __name__, url_prefix="/api/v1")
 
 @chat_bp.route("/generate-reviews", methods=["POST"])
 @inject
-def generate_reviews(chat_service: ChatService):
-    if (
-        request.is_json is False
-        or request.get_json() is None
-        or request.get_json().get("text") is None
-    ):
-        return jsonify({"error_message": "Empty JSON"}), 400
-
-    data = request.get_json()
-    text = data["text"]
-
+@use_kwargs(ChatRequest, location="json")
+def generate_reviews(chat_service: ChatService, **chat_request: ChatRequest):
     try:
-        with concurrent.futures.ThreadPoolExecutor() as executor:
-            futures = [
-                executor.submit(chat_service.chat, text, model["role"], model["model"])
-                for model in data["models"]
-            ]
-            feedbacks = [future.result() for future in futures]
+        feedbacks = chat_service.chat_all(chat_request)
         logger.debug(feedbacks)
         data_return = jsonify(feedbacks)
         return data_return
