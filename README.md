@@ -70,7 +70,7 @@ npm install
 The different personas in the workshop (editor, agent, writer, and publisher) are created through system prompts, which are defined in /service/config/config.toml. You may edit this file to easily use your own prompts instead of the defaults.
 
 
-## Launching the app
+## Manually launchng the app after building the frontend and the backend:
 Perform the following steps, then visit http://localhost:3000 in your browser.
 
 ### Backend
