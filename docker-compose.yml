@@ -13,5 +13,7 @@ services:
     build:
       context: .
       dockerfile: service/Dockerfile
+    env_file:
+      - service/.env
     ports:
       - "5000:5000"
