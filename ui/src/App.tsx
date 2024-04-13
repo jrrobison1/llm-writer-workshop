@@ -12,7 +12,7 @@ interface Response {
 const Header: React.FC = () => {
   return (
     <header className="app-header">
-      <h1>LLM Writing Workshop</h1>
+      <h1>LLM Writer Workshop</h1>
       <p>Can you get your creative writing accepted by the publisher? Use your editor, agent, and fellow writer to help you succeed.</p>
     </header>
   );
@@ -20,7 +20,7 @@ const Header: React.FC = () => {
 
 const App: React.FC = () => {
   const [text, setText] = useState('');
-  const [models, setModels] = useState<string[]>(['claude-3-haiku-20240307', 'gpt-4', 'claude-3-opus-20240229', 'gpt-3.5-turbo']);
+  const [models, setModels] = useState<string[]>(['claude-3-haiku-20240307', 'gpt-4-turbo', 'claude-3-opus-20240229', 'gpt-3.5-turbo']);
   const [responses, setResponses] = useState<Response[]>(
     [
       { role: 'Editor', review: '' },

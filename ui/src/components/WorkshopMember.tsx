@@ -8,7 +8,7 @@ interface Props {
 }
 
 const WorkshopMember: React.FC<Props> = ({ role, response, model, onModelChange }) => {
-  const models = ['gpt-4', 'gpt-3.5-turbo', 'mistral-small', 'mistral-medium', 'mistral-large', 'gemini-pro', 'claude-3-haiku-20240307', 'claude-3-sonnet-20240229', 'claude-3-opus-20240229'];
+  const models = ['gpt-4-turbo', 'GPT-4', 'gpt-3.5-turbo', 'mistral-small', 'mistral-medium', 'mistral-large-latest', 'gemini-pro-1.5', 'gemini-pro', 'claude-3-haiku-20240307', 'claude-3-sonnet-20240229', 'claude-3-opus-20240229'];
   const [expanded, setExpanded] = useState(false);
 
   const handleClick = () => {

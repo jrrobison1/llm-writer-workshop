@@ -1,4 +1,3 @@
-// App.test.tsx
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import axios from 'axios';
@@ -12,7 +11,7 @@ describe('App', () => {
     expect(screen.getByPlaceholderText('Paste your writing here...')).toBeInTheDocument();
     expect(screen.getByText('Submit for Review')).toBeInTheDocument();
     expect(screen.getAllByRole('combobox')).toHaveLength(4);
-    expect(screen.getAllByRole('textbox')).toHaveLength(5); // Including main editor textarea
+    expect(screen.getAllByRole('textbox')).toHaveLength(5);
   });
 
   test('updates text in main editor', () => {
