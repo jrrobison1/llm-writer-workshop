@@ -87,7 +87,13 @@ npm start
 ```
 
 ## Optional Configuration
-The different personas in the workshop (editor, agent, writer, and publisher) are created through system prompts, which are defined in /service/config/config.toml. You may edit this file to easily use your own prompts instead of the defaults.
+The different personas in the workshop (editor, agent, writer, and publisher) are created through system prompts, which are defined in `service/service/config/config.toml`. You may edit this file to easily use your own prompts instead of the defaults.
+
+## Roadmap
+- Different prompts selectable through the UI
+- Disable model selection based on token count of writing
+- Disable model selection based on usage limitations (e.g. gemini-pro-1.5 only 2 times/minute)
+- Support for local models
 
 ## License
 This project is licensed under the terms of the MIT license.
