@@ -69,8 +69,7 @@ cd ui
 npm install
 ```
 
-### Optional Configuration
-The different personas in the workshop (editor, agent, writer, and publisher) are created through system prompts, which are defined in /service/config/config.toml. You may edit this file to easily use your own prompts instead of the defaults.
+
 
 
 ## Manually launchng the app after building the frontend and the backend:
@@ -86,6 +85,9 @@ cd service && poetry run python app.py
 cd ui
 npm start
 ```
+
+## Optional Configuration
+The different personas in the workshop (editor, agent, writer, and publisher) are created through system prompts, which are defined in /service/config/config.toml. You may edit this file to easily use your own prompts instead of the defaults.
 
 ## License
 This project is licensed under the terms of the MIT license.
