@@ -41,7 +41,7 @@
 
 .main-editor textarea {
   width: 100%;
-  height: 600px;
+  height: 625px;
   padding: 20px;
   font-size: 16px;
   border: 1px solid #93a1a1;
@@ -133,6 +133,12 @@
   height: 90%;
   background-color: #eee8d5;
   color: #586e75;
+}
+
+.workshop-member .click-instruction {
+  font-size: 0.6em;
+  color: #666;
+  margin-top: 4px;
 }
 
 .spinner {

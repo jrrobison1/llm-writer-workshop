@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   return (
     <header className="app-header">
       <h1>LLM Writer Workshop</h1>
-      <p>Can you get your creative writing accepted by the publisher? Use your editor, agent, and fellow writer to help you succeed.</p>
+      <p>Can you get your creative writing accepted by the publisher?</p>
     </header>
   );
 };

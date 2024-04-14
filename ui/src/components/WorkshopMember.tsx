@@ -18,6 +18,7 @@ const WorkshopMember: React.FC<Props> = ({ role, response, model, onModelChange 
   return (
     <div className={`workshop-member ${expanded ? 'expanded' : ''}`}>
       <label>{role}</label>
+      <p className="click-instruction">Click review text to expand</p>
       <select value={model} onChange={(e) => onModelChange(e.target.value)}>
         {models.map((m) => (
           <option key={m} value={m}>
