@@ -8,7 +8,7 @@ LLM Writer Workshop simulates a creative writing workshop with different roles: 
 
 I made this because I wanted AI to help me write, not write _for_ me. I wanted the virtual experience of getting feedback from multiple points of view within the same workshop session. And I wanted the ability to receive different points of view—by selecting different models—even for the same persona.
 
-![Publisher Feedback](/.images/publisher_feedback.png "Publisher Feedback")
+![Publisher Feedback](/.images/publisher_feedback_20240414.png "Publisher Feedback")
 
 ## Build and run with Docker
 1. Clone this repository and cd into it
