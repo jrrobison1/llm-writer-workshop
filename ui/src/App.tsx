@@ -29,8 +29,11 @@ const App: React.FC = () => {
       { role: 'Publisher', review: '' },
     ]
   );
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
       const payload = [
         { role: 'Editor', model: models[0] },
@@ -43,6 +46,7 @@ const App: React.FC = () => {
     } catch (error) {
       console.error('Error:', error);
     }
+    setIsLoading(false)
   };
 
   const handleModelChange = (index: number, model: string) => {
@@ -66,7 +70,7 @@ const App: React.FC = () => {
             />
           ))}
         </div>
-        <MainEditor text={text} setText={setText} onSubmit={handleSubmit} />
+        <MainEditor text={text} setText={setText} onSubmit={handleSubmit} isLoading={isLoading} />
         <div className="sidebar right-sidebar">
           {responses.slice(2).map((response, index) => (
             <WorkshopMember
