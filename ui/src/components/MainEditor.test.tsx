@@ -8,6 +8,7 @@ describe('MainEditor', () => {
       text: '',
       setText: jest.fn(),
       onSubmit: jest.fn(),
+      isLoading: false
     };
     render(<MainEditor {...props} />);
     expect(screen.getByPlaceholderText('Paste your writing here...')).toBeInTheDocument();
@@ -19,6 +20,7 @@ describe('MainEditor', () => {
       text: '',
       setText: jest.fn(),
       onSubmit: jest.fn(),
+      isLoading: false
     };
     render(<MainEditor {...props} />);
     const textArea = screen.getByPlaceholderText('Paste your writing here...');
@@ -31,6 +33,7 @@ describe('MainEditor', () => {
       text: '',
       setText: jest.fn(),
       onSubmit: jest.fn(),
+      isLoading: false
     };
     render(<MainEditor {...props} />);
     const submitButton = screen.getByText('Submit for Review');
