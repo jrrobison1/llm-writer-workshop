@@ -138,7 +138,7 @@
 .workshop-member .click-instruction {
   font-size: 0.6em;
   color: #666;
-  margin-top: 4px;
+  margin-top: 8px;
 }
 
 .spinner {
@@ -156,6 +156,15 @@
   display: flex;
   align-items: left;
   justify-content: left;
+}
+
+.workshop-member label {
+  margin-right: 5px;
+}
+
+.workshop-member .label-instruction-container {
+  display: flex;
+  align-items: left;
 }
 
 
