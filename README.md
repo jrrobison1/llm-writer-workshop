@@ -4,11 +4,17 @@
 
 
 ## Description
-LLM Writer Workshop simulates a creative writing workshop, consisting of members with distinct roles: a writing agent, an editor, a fellow writer, and a publisher. It uses selectable AI models, including OpenAI's GPT-4 and GPT-3.5 Turbo; Anthropic's Claude Haiku, Sonnet, and Opus; Google's Gemini; and Mistral's small, medium, and large. The project is written with a Python/Flask backend and a TypeScript/React frontend.
+LLM Writer Workshop simulates a creative writing workshop. It uses selectable AI models, including OpenAI's GPT-4 and GPT-3.5 Turbo; Anthropic's Claude Haiku, Sonnet, and Opus; Google's Gemini; and Mistral's small, medium, and large. The project is written with a Python/Flask backend and a TypeScript/React frontend.
 
 ![Publisher Feedback](/.images/publisher_feedback_20240414.png "Publisher Feedback")
 
-I made this because I wanted AI to help me write, not write _for_ me. I wanted the virtual experience of getting feedback from multiple points of view within the same workshop session. And I wanted the ability to receive different points of view—by selecting different models—even for the same persona.
+#### Your workshop teammates:
+- Editor: Provides fine-grained technical feedback on word choice, grammar, and sentence structure.
+- Agent: Reviews your work with and eye toward genre and overall quality. Enthusiastic but critical. You may find the agent offering to clean your car or bring you breakfast—anything for a client!
+- Writer: A fellow writer. Reviews your work for plot, characters, and imagery. Your fellow writer may relate your work to their own (made-up) publications.
+- Publisher: Part of the workshop is submitting your work as-is to your workshop publisher. The publisher is very busy reviewing manuscripts, and only has time to give a quick accept/reject decision, with concise, decisive feedback related to their publication decision.
+
+Your workshop teammates may make up names for themselves, their publishing house, their agency, or their published writing.
 
 ## Build and run with Docker
 1. Clone this repository and cd into it
@@ -88,6 +94,9 @@ npm start
 
 ## Optional Configuration
 The different personas in the workshop (editor, agent, writer, and publisher) are created through system prompts, which are defined in `service/service/config/config.toml`. You may edit this file to easily use your own prompts instead of the defaults.
+
+## Motivation
+I made this because I wanted AI to help me write, not write _for_ me. I wanted the virtual experience of getting feedback from multiple points of view within the same workshop session. And I wanted the ability to receive different points of view—by selecting different models—even for the same persona.
 
 ## Roadmap
 - Streaming to UI
