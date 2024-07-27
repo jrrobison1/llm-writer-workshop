@@ -5,7 +5,7 @@ interface Props {
 
   setText: (text: string) => void;
   onSubmit: () => void;
-  isLoading: boolean;  // New prop to indicate loading state
+  isLoading: boolean;
 }
 
 const MainEditor: React.FC<Props> = ({ text, setText, onSubmit, isLoading }) => {
