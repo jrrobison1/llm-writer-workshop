@@ -1,15 +1,43 @@
+from typing import Union
+
+from llm_writer_workshop.chatter.claude_chatter import ClaudeChatter
 from llm_writer_workshop.chatter.gemini_chatter import GeminiChatter
 from llm_writer_workshop.chatter.mistral_chatter import MistralChatter
 from llm_writer_workshop.chatter.openai_chatter import OpenAIChatter
 from llm_writer_workshop.service.config_service import ConfigService
-from llm_writer_workshop.chatter.claude_chatter import ClaudeChatter
 
 
 class ChatterFactory:
+    """
+    A factory class for creating different types of Chatter instances.
+
+    This class uses a ConfigService to retrieve configuration details and
+    creates the appropriate Chatter instance based on the specified role and model.
+    """
+
     def __init__(self, config_service: ConfigService):
+        """
+        Initialize the ChatterFactory with a ConfigService.
+
+        Args:
+            config_service (ConfigService): An instance of ConfigService to retrieve configuration details.
+        """
         self.config_service = config_service
 
-    def get_chatter(self, role, model):
+    def get_chatter(self, role: str, model: str) -> Union[OpenAIChatter, GeminiChatter, MistralChatter, ClaudeChatter]:
+        """
+        Create and return a Chatter instance based on the specified role and model.
+
+        Args:
+            role (str): The role of the chatter (e.g., "Editor", "Agent", "Writer", "Publisher").
+            model (str): The model to be used for the chatter.
+
+        Returns:
+            Union[OpenAIChatter, GeminiChatter, MistralChatter, ClaudeChatter]: An instance of the appropriate Chatter class.
+
+        Raises:
+            ValueError: If an invalid model is specified.
+        """
         if role == "Editor":
             name = self.config_service.get_editor_name()
             system_prompt = self.config_service.get_editor_prompt()

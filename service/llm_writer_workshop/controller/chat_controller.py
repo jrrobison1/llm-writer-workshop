@@ -13,6 +13,23 @@ chat_bp = Blueprint("chat", __name__, url_prefix="/api/v1")
 @inject
 @use_kwargs(ChatRequest, location="json")
 def generate_reviews(chat_service: ChatService, **chat_request: ChatRequest):
+    """
+    Generate reviews based on the provided chat request.
+
+    This endpoint handles POST requests to generate reviews using the ChatService.
+    It expects a JSON payload conforming to the ChatRequest schema.
+
+    Args:
+        chat_service (ChatService): An injected instance of the ChatService.
+        **chat_request (ChatRequest): Keyword arguments representing the chat request data.
+
+    Returns:
+        flask.Response: A JSON response containing the generated feedbacks.
+        If an error occurs, it returns a JSON error message with a 500 status code.
+
+    Raises:
+        Exception: Any exception that occurs during the review generation process.
+    """
     try:
         feedbacks = chat_service.chat_all(chat_request)
         logger.debug(feedbacks)

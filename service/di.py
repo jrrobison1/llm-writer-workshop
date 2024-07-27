@@ -1,4 +1,5 @@
 from injector import Module, provider, singleton
+
 from llm_writer_workshop.chatter.chatter_factory import ChatterFactory
 from llm_writer_workshop.service.chat_service import ChatService
 from llm_writer_workshop.service.config_service import ConfigService

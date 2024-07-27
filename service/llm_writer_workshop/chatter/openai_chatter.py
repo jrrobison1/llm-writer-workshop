@@ -1,4 +1,5 @@
 import os
+from typing import Dict
 from openai import OpenAI
 
 from llm_writer_workshop.chatter.chatter import Chatter
@@ -8,16 +9,31 @@ DEFAULT_MAX_OUTPUT_TOKENS = 768
 DEFAULT_SYSTEM_PROMPT = "You are a helpful assistant"
 DEFAULT_TEMPERATURE = 1
 
-
 class OpenAIChatter(Chatter):
+    """
+    A class for interacting with OpenAI's chat models.
+
+    This class implements the Chatter interface and provides methods for
+    initializing a chat session, sending messages, and managing conversation history.
+    """
+
     def __init__(
         self,
         *,
-        model=DEFAULT_MODEL,
-        system_prompt=DEFAULT_SYSTEM_PROMPT,
-        name,
-        max_output_tokens=DEFAULT_SYSTEM_PROMPT
+        model: str = DEFAULT_MODEL,
+        system_prompt: str = DEFAULT_SYSTEM_PROMPT,
+        name: str,
+        max_output_tokens: int = DEFAULT_MAX_OUTPUT_TOKENS
     ):
+        """
+        Initialize the OpenAIChatter.
+
+        Args:
+            model (str): The OpenAI model to use. Defaults to DEFAULT_MODEL.
+            system_prompt (str): The initial system prompt. Defaults to DEFAULT_SYSTEM_PROMPT.
+            name (str): The name of the chatter.
+            max_output_tokens (int): Maximum number of tokens in the output. Defaults to DEFAULT_MAX_OUTPUT_TOKENS.
+        """
         try:
             self.model = model
             self.max_output_tokens = max_output_tokens
@@ -30,7 +46,16 @@ class OpenAIChatter(Chatter):
         except Exception as e:
             print(e)
 
-    def chat(self, message):
+    def chat(self, message: str) -> str:
+        """
+        Send a message to the OpenAI chat model and get a response.
+
+        Args:
+            message (str): The user's message to send to the model.
+
+        Returns:
+            str: The AI's response message.
+        """
         user_message = {}
         if message != "":
             user_message = {"role": "user", "content": message}
@@ -52,6 +77,12 @@ class OpenAIChatter(Chatter):
 
         return ai_messsage
 
-    def add_to_history(self, message):
-        user_message = {"role": "user", "content": message}
+    def add_to_history(self, message: str) -> None:
+        """
+        Add a user message to the conversation history.
+
+        Args:
+            message (str): The user's message to add to the history.
+        """
+        user_message: Dict[str, str] = {"role": "user", "content": message}
         self.message_history.append(user_message)

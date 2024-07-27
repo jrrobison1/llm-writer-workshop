@@ -1,10 +1,11 @@
 import logging
+
+from dotenv import load_dotenv
 from flask import Flask
 from flask_cors import CORS
-from dotenv import load_dotenv
 from flask_injector import FlaskInjector
+
 from di import AppModule
-from llm_writer_workshop.service.config_service import ConfigService
 from llm_writer_workshop.controller.chat_controller import chat_bp
 from llm_writer_workshop.controller.health_check_controller import health_bp
 
