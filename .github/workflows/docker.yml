@@ -23,7 +23,7 @@ jobs:
     - name: Build and run with Docker Compose
       run: |
         touch ./service/.env
-        docker-compose up --build -d
+        docker compose up --build -d
         sleep 10
 
     - name: Check frontend accessible
